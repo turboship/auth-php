@@ -1,0 +1,40 @@
+{
+  "name": "turboship/auth-php",
+  "description": "A PHP Wrapper For The TurboShip Authenticate API",
+  "keywords": [
+    "turboship",
+    "php",
+    "auth",
+    "turboship-auth"
+  ],
+  "license": "MIT",
+  "type": "library",
+  "homepage": "https://github.com/turboship/auth-php",
+  "authors":[
+    {
+      "name": "James Weston"
+    }
+  ],
+  "require": {
+    "jamesvweston/php-utilities": "dev-master",
+    "turboship/api-php": "dev-master"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~4.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "TurboShip\\Auth\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "TurboShip\\Auth\\Tests\\": "tests"
+    }
+  },
+  "config": {
+    "preferred-install": "dist"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable" : true
+}
