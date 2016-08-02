@@ -212,31 +212,55 @@ class Account implements AccountContract, \JsonSerializable
     }
 
     /**
-     * @return bool
+     * @return Identity|null
      */
-    public function hasPostageIdentity()
+    public function getPostageIdentity()
     {
         foreach ($this->identities AS $identity)
         {
             if ($identity->getProduct()->getId() == ProductDataUtil::getPostageId())
-                return true;
+                return $identity;
         }
         
-        return false;
+        return null;
     }
 
     /**
-     * @return bool
+     * @return Identity|null
      */
-    public function hasLocationsIdentity()
+    public function getLocationsIdentity()
     {
         foreach ($this->identities AS $identity)
         {
             if ($identity->getProduct()->getId() == ProductDataUtil::getLocationsId())
-                return true;
+                return $identity;
         }
 
-        return false;
+        return null;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getPostageIdentityUserId()
+    {
+        $identity               = $this->getPostageIdentity();
+        if (is_null($identity))
+            return null;
+        else
+            return $identity->getUserId();
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getLocationsIdentityUserId()
+    {
+        $identity               = $this->getLocationsIdentity();
+        if (is_null($identity))
+            return null;
+        else
+            return $identity->getUserId();
     }
     
 }

@@ -19,6 +19,8 @@ interface AccountContract
     public function setOrganization($organization);
     public function getIdentities();
     public function addIdentity($identity);
-    public function hasPostageIdentity();
-    public function hasLocationsIdentity();
+    public function getPostageIdentity();
+    public function getLocationsIdentity();
+    public function getPostageIdentityUserId();
+    public function getLocationsIdentityUserId();
 }
