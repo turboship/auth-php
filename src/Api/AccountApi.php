@@ -50,6 +50,23 @@ class AccountApi extends BaseApi
     }
 
     /**
+     * @param   string      $email
+     * @return  Account|null
+     */
+    public function getOneByEmail($email)
+    {
+        $getAccountsRequest = new GetAccountsRequest();
+        $getAccountsRequest->setEmails($email);
+        
+        $result             = $this->index($getAccountsRequest);
+        
+        if ($result->getTotal() == 1)
+            return $result->getData()[0];
+        else
+            return null;
+    }
+
+    /**
      * @param CreateAccountRequest|array $request
      * @return  Account
      */

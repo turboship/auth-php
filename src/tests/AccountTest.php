@@ -40,5 +40,14 @@ class AccountTest extends AccessTokenTest
         $this->assertInstanceOf('TurboShip\Auth\Models\Account', $account);
     }
     
+    public function testGetOneByEmail()
+    {
+        $authClient             = $this->testENVInstantiation(false);
+        $email                  = $authClient->apiClient->getApiConfiguration()->getUsername();
+        
+        $result                 = $authClient->accountApi->getOneByEmail($email);
+        $this->assertInstanceOf('TurboShip\Auth\Models\Account', $result);
+    }
+    
     
 }
