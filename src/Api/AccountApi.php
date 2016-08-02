@@ -27,11 +27,12 @@ class AccountApi extends BaseApi
 
     /**
      * Get the Account associated with the provided access_token
+     * @param  string   $access_token
      * @return Account
      */
-    public function getMyAccount()
+    public function getMyAccount($access_token)
     {
-        $result                 = $this->apiClient->getAccountForAccessToken();
+        $result                 = $this->apiClient->getAccountForAccessToken($access_token);
         $account                = new Account($result);
         return $account;
     }
@@ -49,12 +50,13 @@ class AccountApi extends BaseApi
     }
 
     /**
-     * @param CreateAccountRequest|array $createAccountRequest
+     * @param CreateAccountRequest|array $request
      * @return  Account
      */
-    public function store($createAccountRequest = [])
+    public function store($request = [])
     {
-        $response           =   $this->apiClient->post('accounts', $createAccountRequest->jsonSerialize());
+        $data               = ($request instanceof CreateAccountRequest) ? $request->jsonSerialize() : $request;
+        $response           = $this->apiClient->post('accounts', $data);
         $account            = new Account($response);
 
         return $account;

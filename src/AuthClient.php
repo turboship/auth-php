@@ -19,13 +19,18 @@ class AuthClient
      * @var ProductApi
      */
     public $productApi;
+
+    /**
+     * @var ApiClient
+     */
+    public $apiClient;
     
     
     public function __construct($apiConfiguration)
     {
-        $apiClient          = new ApiClient($apiConfiguration);
+        $this->apiClient    = new ApiClient($apiConfiguration);
         
-        $this->accountApi   = new AccountApi($apiClient);
-        $this->productApi   = new ProductApi($apiClient);
+        $this->accountApi   = new AccountApi($this->apiClient);
+        $this->productApi   = new ProductApi($this->apiClient);
     }
 }

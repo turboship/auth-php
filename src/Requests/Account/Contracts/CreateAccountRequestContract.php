@@ -9,7 +9,7 @@ interface CreateAccountRequestContract
     public function getFirstName();
     public function setFirstName($firstName);
     public function getLastName();
-    public function setLastName();
+    public function setLastName($lastName);
     public function getEmail();
     public function setEmail($email);
     public function getPassword();

@@ -52,6 +52,8 @@ class CreateAccountRequest implements CreateAccountRequestContract, \JsonSeriali
      */
     public function __construct($data = null)
     {
+        $this->identities               = [];
+        
         if (is_array($data))
         {
             $this->firstName            = AU::get($data['firstName']);
@@ -59,7 +61,15 @@ class CreateAccountRequest implements CreateAccountRequestContract, \JsonSeriali
             $this->email                = AU::get($data['email']);
             $this->password             = AU::get($data['password']);
             $this->accountTypeId        = AU::get($data['accountTypeId'], 1);
-            $this->identities           = AU::get($data['identities']);
+            
+            $identities                 = AU::get($data['identities']);
+            if (is_array($identities))
+            {
+                foreach ($identities AS $item)
+                {
+                    $this->addIdentity($item);
+                }
+            }
         }
     }
     
@@ -176,7 +186,10 @@ class CreateAccountRequest implements CreateAccountRequestContract, \JsonSeriali
      */
     public function addIdentity($identity)
     {
-        $this->identities[] = $identity;
+        if ($identity instanceof CreateIdentityRequest)
+            $this->identities[] = $identity;
+        else
+            $this->identities[] = new CreateIdentityRequest($identity);
     }
     
     
