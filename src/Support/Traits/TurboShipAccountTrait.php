@@ -1,5 +1,8 @@
 <?php
 
+namespace TurboShip\Auth\Support\Traits;
+
+
 use TurboShip\Auth\Models\Account;
 
 trait TurboShipAccountTrait
