@@ -9,4 +9,6 @@ interface IdentityContract
     public function setId($id);
     public function getUserId();
     public function setUserId($userId);
+    public function getProduct();
+    public function setProduct($product);
 }

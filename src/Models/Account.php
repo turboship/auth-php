@@ -2,8 +2,10 @@
 
 namespace TurboShip\Auth\Models;
 
+
 use jamesvweston\Utilities\ArrayUtil AS AU;
 use TurboShip\Auth\Models\Contracts\AccountContract;
+use TurboShip\Auth\Utilities\Data\ProductDataUtil;
 
 class Account implements AccountContract, \JsonSerializable
 {
@@ -50,6 +52,8 @@ class Account implements AccountContract, \JsonSerializable
      */
     public function __construct($data = null)
     {
+        $this->identities               = [];
+        
         if (is_array($data))
         {
             $this->id                   = AU::get($data['id']);
@@ -64,8 +68,7 @@ class Account implements AccountContract, \JsonSerializable
             $this->organization         = AU::get($data['organization']);
             if (!is_null($this->organization))
                 $this->organization     = new Organization($this->organization);
-
-            $this->identities           = [];
+            
             $identities                 = AU::get($data['identities']);
             
             foreach ($identities AS $item)
@@ -206,6 +209,34 @@ class Account implements AccountContract, \JsonSerializable
     public function addIdentity($identity)
     {
         $this->identities[] = $identity;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasPostageIdentity()
+    {
+        foreach ($this->identities AS $identity)
+        {
+            if ($identity->getProduct()->getId() == ProductDataUtil::getPostageId())
+                return true;
+        }
+        
+        return false;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasLocationsIdentity()
+    {
+        foreach ($this->identities AS $identity)
+        {
+            if ($identity->getProduct()->getId() == ProductDataUtil::getLocationsId())
+                return true;
+        }
+
+        return false;
     }
     
 }

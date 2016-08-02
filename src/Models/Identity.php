@@ -19,6 +19,11 @@ class Identity implements IdentityContract, \JsonSerializable
      */
     protected $userId;
 
+    /**
+     * @var Product
+     */
+    protected $product;
+
 
     /**
      * Identity constructor.
@@ -30,6 +35,7 @@ class Identity implements IdentityContract, \JsonSerializable
         {
             $this->id                   = AU::get($data['id']);
             $this->userId               = AU::get($data['userId']);
+            $this->product              = AU::get($data['product']);
         }
     }
     
@@ -41,6 +47,7 @@ class Identity implements IdentityContract, \JsonSerializable
         return [
             'id'        => $this->id,
             'userId'    => $this->userId,
+            'product'   => $this->product->jsonSerialize(),
         ];
     }
 
@@ -75,5 +82,22 @@ class Identity implements IdentityContract, \JsonSerializable
     {
         $this->userId = $userId;
     }
-    
+
+    /**
+     * @return Product
+     */
+    public function getProduct()
+    {
+        return $this->product;
+    }
+
+    /**
+     * @param   Product     $product
+     * @return  Product
+     */
+    public function setProduct($product)
+    {
+        return $this->product;
+    }
+
 }
