@@ -14,6 +14,21 @@ class Account implements AccountContract, \JsonSerializable
     protected $id;
 
     /**
+     * @var string
+     */
+    protected $firstName;
+
+    /**
+     * @var string
+     */
+    protected $lastName;
+    
+    /**
+     * @var string
+     */
+    protected $email;
+
+    /**
      * @var AccountType
      */
     protected $accountType;
@@ -38,6 +53,9 @@ class Account implements AccountContract, \JsonSerializable
         if (is_array($data))
         {
             $this->id                   = AU::get($data['id']);
+            $this->firstName            = AU::get($data['firstName']);
+            $this->lastName             = AU::get($data['lastName']);
+            $this->email                = AU::get($data['email']);
             $this->accountType          = AU::get($data['accountType']);
             
             if (!is_null($this->accountType))
@@ -63,6 +81,9 @@ class Account implements AccountContract, \JsonSerializable
     public function jsonSerialize()
     {
         $object['id']                   = $this->id;
+        $object['firstName']            = $this->firstName;
+        $object['lastName']             = $this->lastName;
+        $object['email']                = $this->email;
         $object['accountType']          = $this->accountType->jsonSerialize();
         $object['organization']         = $this->organization->jsonSerialize();
         $object['identities']           = [];
@@ -91,6 +112,54 @@ class Account implements AccountContract, \JsonSerializable
         $this->id = $id;
     }
 
+    /**
+     * @return string
+     */
+    public function getFirstName()
+    {
+        return $this->firstName;
+    }
+
+    /**
+     * @param string $firstName
+     */
+    public function setFirstName($firstName)
+    {
+        $this->firstName = $firstName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLastName()
+    {
+        return $this->lastName;
+    }
+
+    /**
+     * @param string $lastName
+     */
+    public function setLastName($lastName)
+    {
+        $this->lastName = $lastName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param string $email
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+    
     /**
      * @return AccountType
      */

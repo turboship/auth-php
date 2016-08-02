@@ -26,6 +26,17 @@ class AccountApi extends BaseApi
     }
 
     /**
+     * Get the Account associated with the provided access_token
+     * @return Account
+     */
+    public function getMyAccount()
+    {
+        $result                 = $this->apiClient->get('accounts/me');
+        $account                = new Account($result);
+        return $account;
+    }
+
+    /**
      * @param   int       $id
      * @return  Account
      */
