@@ -31,7 +31,7 @@ class AccountApi extends BaseApi
      */
     public function getMyAccount()
     {
-        $result                 = $this->apiClient->get('accounts/me');
+        $result                 = $this->apiClient->getAccountForAccessToken();
         $account                = new Account($result);
         return $account;
     }
