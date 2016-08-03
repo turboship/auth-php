@@ -5,6 +5,9 @@ namespace TurboShip\Auth\Models;
 
 use jamesvweston\Utilities\ArrayUtil AS AU;
 use TurboShip\Auth\Models\Contracts\AccountContract;
+use TurboShip\Auth\Models\Contracts\AccountTypeContract;
+use TurboShip\Auth\Models\Contracts\IdentityContract;
+use TurboShip\Auth\Models\Contracts\OrganizationContract;
 use TurboShip\Auth\Utilities\Data\ProductDataUtil;
 
 class Account implements AccountContract, \JsonSerializable
@@ -165,11 +168,11 @@ class Account implements AccountContract, \JsonSerializable
     }
 
     /**
-     * @param AccountType|array $accountType
+     * @param AccountTypeContract|array $accountType
      */
     public function setAccountType($accountType)
     {
-        if ($accountType instanceof AccountType)
+        if ($accountType instanceof AccountTypeContract)
             $this->accountType  = $accountType;
         else
             $this->accountType  = new AccountType($accountType);
@@ -184,11 +187,11 @@ class Account implements AccountContract, \JsonSerializable
     }
 
     /**
-     * @param Organization|array $organization
+     * @param OrganizationContract|array $organization
      */
     public function setOrganization($organization)
     {
-        if ($organization instanceof Organization)
+        if ($organization instanceof OrganizationContract)
             $this->organization = $organization;
         else
             $this->organization = new Organization($organization);
@@ -203,11 +206,11 @@ class Account implements AccountContract, \JsonSerializable
     }
 
     /**
-     * @param Identity|array $identity
+     * @param IdentityContract|array $identity
      */
     public function addIdentity($identity)
     {
-        if ($identity instanceof Identity)
+        if ($identity instanceof IdentityContract)
             $this->identities[] = $identity;
         else
             $this->identities[] = new Identity($identity);
