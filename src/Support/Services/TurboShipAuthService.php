@@ -50,7 +50,7 @@ class TurboShipAuthService
         $request                = new CreateAccountRequest();
         $request->setFirstName($user->getFirstName());
         $request->setLastName($user->getLastName());
-        $request->setEmail($request->getEmail());
+        $request->setEmail($user->getEmail());
         $request->setPassword($user->getPassword());
         $request->setAccountTypeId($accountTypeId);
 
