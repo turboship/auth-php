@@ -40,6 +40,12 @@ class CreateAccountRequest implements CreateAccountRequestContract
     protected $accountTypeId;
 
     /**
+     * The Organization this Account belongs to. Null will default it to your Organization
+     * @var     int|null
+     */
+    protected $organizationId;
+
+    /**
      * @SWG\Property()
      * @var     CreateIdentityRequest[]
      */
@@ -61,6 +67,7 @@ class CreateAccountRequest implements CreateAccountRequestContract
             $this->email                = AU::get($data['email']);
             $this->password             = AU::get($data['password']);
             $this->accountTypeId        = AU::get($data['accountTypeId'], 1);
+            $this->organizationId       = AU::get($data['organizationId']);
             
             $identities                 = AU::get($data['identities']);
             if (is_array($identities))
@@ -83,6 +90,7 @@ class CreateAccountRequest implements CreateAccountRequestContract
         $object['email']                = $this->email;
         $object['password']             = $this->password;
         $object['accountTypeId']        = $this->accountTypeId;
+        $object['organizationId']       = $this->organizationId;
         $object['identities']           = [];
         
         foreach ($this->identities AS $identity)
@@ -176,6 +184,22 @@ class CreateAccountRequest implements CreateAccountRequestContract
     public function setAccountTypeId($accountTypeId)
     {
         $this->accountTypeId = $accountTypeId;
+    }
+
+    /**
+     * @return  int|null
+     */
+    public function getOrganizationId()
+    {
+        return $this->organizationId;
+    }
+
+    /**
+     * @param   int $organizationId
+     */
+    public function setOrganizationId($organizationId)
+    {
+        $this->organizationId   = $organizationId;
     }
 
     /**
