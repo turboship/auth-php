@@ -5,6 +5,7 @@ namespace TurboShip\Auth\Models;
 
 use TurboShip\Auth\Models\Contracts\IdentityContract;
 use jamesvweston\Utilities\ArrayUtil AS AU;
+use TurboShip\Auth\Models\Contracts\ProductContract;
 
 class Identity implements IdentityContract, \JsonSerializable
 {
@@ -92,12 +93,12 @@ class Identity implements IdentityContract, \JsonSerializable
     }
 
     /**
-     * @param   Product     $product
+     * @param   ProductContract     $product
      * @return  Product
      */
     public function setProduct($product)
     {
-        if ($product instanceof Product)
+        if ($product instanceof ProductContract)
             $this->product      = $product;
         else
             $this->product      = new Product($product);
