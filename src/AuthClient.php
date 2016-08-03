@@ -41,4 +41,14 @@ class AuthClient
         
         $this->service      = new TurboShipAuthService($this->apiClient);
     }
+
+    /**
+     * @param   string      $access_token
+     * @return  \TurboShip\Auth\Models\Account
+     */
+    public function getMyAccount($access_token)
+    {
+        $account                = $this->apiClient->getAccountForAccessToken($access_token);
+        return $account;
+    }
 }

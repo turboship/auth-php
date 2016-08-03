@@ -16,22 +16,12 @@ class TurboShipAuthService
     /**
      * @var AuthClient
      */
-    public $authClient;
+    private $authClient;
 
 
     public function __construct($config)
     {
         $this->authClient       = new AuthClient($config);
-    }
-
-    /**
-     * @param   string      $access_token
-     * @return  \TurboShip\Auth\Models\Account
-     */
-    public function getMyAccount($access_token)
-    {
-        $account                = $this->authClient->accountApi->getMyAccount($access_token);
-        return $account;
     }
 
     /**
