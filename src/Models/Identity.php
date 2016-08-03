@@ -35,7 +35,7 @@ class Identity implements IdentityContract, \JsonSerializable
         {
             $this->id                   = AU::get($data['id']);
             $this->userId               = AU::get($data['userId']);
-            $this->product              = AU::get($data['product']);
+            $this->setProduct(AU::get($data['product']));
         }
     }
     
@@ -97,7 +97,10 @@ class Identity implements IdentityContract, \JsonSerializable
      */
     public function setProduct($product)
     {
-        return $this->product;
+        if ($product instanceof Product)
+            $this->product      = $product;
+        else
+            $this->product      = new Product($product);
     }
 
 }
