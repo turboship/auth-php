@@ -13,6 +13,8 @@ interface GetAccountsRequestContract
     public function setLastNames($lastNames);
     public function getEmails();
     public function setEmails($emails);
+    public function getOrganizationIds();
+    public function setOrganizationIds();
     public function getLimit();
     public function setLimit($limit);
     public function getPage();

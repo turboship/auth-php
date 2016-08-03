@@ -30,6 +30,11 @@ class GetAccountsRequest implements GetAccountsRequestContract, \JsonSerializabl
     protected $emails;
 
     /**
+     * @var string|null
+     */
+    protected $organizationIds;
+
+    /**
      * @var int|null
      */
     protected $limit;
@@ -52,6 +57,7 @@ class GetAccountsRequest implements GetAccountsRequestContract, \JsonSerializabl
             $this->firstNames           = AU::get($data['firstNames']);
             $this->lastNames            = AU::get($data['lastNames']);
             $this->emails               = AU::get($data['emails']);
+            $this->organizationIds      = AU::get($data['organizationIds']);
             $this->limit                = AU::get($data['limit']);
             $this->page                 = AU::get($data['page']);
         }
@@ -66,6 +72,7 @@ class GetAccountsRequest implements GetAccountsRequestContract, \JsonSerializabl
         $object['firstNames']           = $this->firstNames;
         $object['lastNames']            = $this->lastNames;
         $object['emails']               = $this->emails;
+        $object['organizationIds']      = $this->organizationIds;
         $object['limit']                = $this->limit;
         $object['page']                 = $this->page;
         
@@ -137,6 +144,22 @@ class GetAccountsRequest implements GetAccountsRequestContract, \JsonSerializabl
     }
 
     /**
+     * @return null|string
+     */
+    public function getOrganizationIds()
+    {
+        return $this->organizationIds;
+    }
+
+    /**
+     * @param null|string $organizationIds
+     */
+    public function setOrganizationIds($organizationIds)
+    {
+        $this->organizationIds = $organizationIds;
+    }
+
+    /**
      * @return int|null
      */
     public function getLimit()
@@ -167,7 +190,5 @@ class GetAccountsRequest implements GetAccountsRequestContract, \JsonSerializabl
     {
         $this->page = $page;
     }
-    
-    
     
 }
