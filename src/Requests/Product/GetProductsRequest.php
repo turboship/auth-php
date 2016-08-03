@@ -6,7 +6,7 @@ namespace TurboShip\Auth\Requests\Product;
 use TurboShip\Auth\Requests\Product\Contracts\GetProductsRequestContract;
 use jamesvweston\Utilities\ArrayUtil AS AU;
 
-class GetProductsRequest implements GetProductsRequestContract, \JsonSerializable
+class GetProductsRequest implements GetProductsRequestContract
 {
 
     /**
@@ -42,6 +42,11 @@ class GetProductsRequest implements GetProductsRequestContract, \JsonSerializabl
         $object['names']                = $this->names;
 
         return $object;
+    }
+    
+    public function validate()
+    {
+        
     }
 
     /**

@@ -7,7 +7,7 @@ use TurboShip\Auth\Models\Contracts\IdentityContract;
 use jamesvweston\Utilities\ArrayUtil AS AU;
 use TurboShip\Auth\Models\Contracts\ProductContract;
 
-class Identity implements IdentityContract, \JsonSerializable
+class Identity implements IdentityContract
 {
 
     /**

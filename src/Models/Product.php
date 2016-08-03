@@ -6,7 +6,7 @@ namespace TurboShip\Auth\Models;
 use TurboShip\Auth\Models\Contracts\ProductContract;
 use jamesvweston\Utilities\ArrayUtil AS AU;
 
-class Product implements ProductContract, \JsonSerializable
+class Product implements ProductContract
 {
 
     /**

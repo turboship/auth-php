@@ -4,7 +4,7 @@ namespace TurboShip\Auth\Responses;
 
 use jamesvweston\Utilities\ArrayUtil AS AU;
 
-abstract class PaginatedResults implements \JsonSerializable
+abstract class PaginatedResults implements PaginatedResultsContract
 {
 
     /**
@@ -228,6 +228,5 @@ abstract class PaginatedResults implements \JsonSerializable
     {
         $this->to = $to;
     }
-    
     
 }

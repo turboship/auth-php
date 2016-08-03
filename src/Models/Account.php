@@ -10,7 +10,7 @@ use TurboShip\Auth\Models\Contracts\IdentityContract;
 use TurboShip\Auth\Models\Contracts\OrganizationContract;
 use TurboShip\Auth\Utilities\Data\ProductDataUtil;
 
-class Account implements AccountContract, \JsonSerializable
+class Account implements AccountContract
 {
 
     /**

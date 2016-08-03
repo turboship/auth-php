@@ -6,7 +6,7 @@ namespace TurboShip\Auth\Models;
 use jamesvweston\Utilities\ArrayUtil AS AU;
 use TurboShip\Auth\Models\Contracts\AccountTypeContract;
 
-class AccountType implements AccountTypeContract, \JsonSerializable
+class AccountType implements AccountTypeContract
 {
 
     /**

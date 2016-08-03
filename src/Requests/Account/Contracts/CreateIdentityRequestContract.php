@@ -9,4 +9,6 @@ interface CreateIdentityRequestContract
     public function setUserId($userId);
     public function getProductId();
     public function setProductId($productId);
+    public function jsonSerialize();
+    public function validate();
 }

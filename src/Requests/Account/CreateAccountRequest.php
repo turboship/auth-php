@@ -6,7 +6,7 @@ namespace TurboShip\Auth\Requests\Account;
 use TurboShip\Auth\Requests\Account\Contracts\CreateAccountRequestContract;
 use jamesvweston\Utilities\ArrayUtil AS AU;
 
-class CreateAccountRequest implements CreateAccountRequestContract, \JsonSerializable
+class CreateAccountRequest implements CreateAccountRequestContract
 {
 
     /**
@@ -91,6 +91,11 @@ class CreateAccountRequest implements CreateAccountRequestContract, \JsonSeriali
         }
         
         return $object;
+    }
+
+    public function validate()
+    {
+
     }
 
     /**

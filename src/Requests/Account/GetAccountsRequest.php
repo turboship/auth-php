@@ -6,7 +6,7 @@ namespace TurboShip\Auth\Requests\Account;
 use jamesvweston\Utilities\ArrayUtil AS AU;
 use TurboShip\Auth\Requests\Account\Contracts\GetAccountsRequestContract;
 
-class GetAccountsRequest implements GetAccountsRequestContract, \JsonSerializable
+class GetAccountsRequest implements GetAccountsRequestContract
 {
 
     /**
@@ -77,6 +77,12 @@ class GetAccountsRequest implements GetAccountsRequestContract, \JsonSerializabl
         $object['page']                 = $this->page;
         
         return $object;
+    }
+    
+    
+    public function validate()
+    {
+        
     }
 
     /**

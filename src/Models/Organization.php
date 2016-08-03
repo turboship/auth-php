@@ -6,7 +6,7 @@ namespace TurboShip\Auth\Models;
 use TurboShip\Auth\Models\Contracts\OrganizationContract;
 use jamesvweston\Utilities\ArrayUtil AS AU;
 
-class Organization implements OrganizationContract, \JsonSerializable
+class Organization implements OrganizationContract
 {
 
     /**

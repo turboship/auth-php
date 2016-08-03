@@ -6,7 +6,7 @@ namespace TurboShip\Auth\Requests\Account;
 use TurboShip\Auth\Requests\Account\Contracts\CreateIdentityRequestContract;
 use jamesvweston\Utilities\ArrayUtil AS AU;
 
-class CreateIdentityRequest implements CreateIdentityRequestContract, \JsonSerializable
+class CreateIdentityRequest implements CreateIdentityRequestContract
 {
 
     /**
@@ -42,6 +42,11 @@ class CreateIdentityRequest implements CreateIdentityRequestContract, \JsonSeria
         $object['productId']        = $this->productId;
         
         return $object;
+    }
+
+    public function validate()
+    {
+
     }
 
     /**
