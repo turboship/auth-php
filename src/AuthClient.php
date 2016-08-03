@@ -5,6 +5,7 @@ namespace TurboShip\Auth;
 
 use TurboShip\Api\ApiClient;
 use TurboShip\Auth\Api\AccountApi;
+use TurboShip\Auth\Api\OAuthApi;
 use TurboShip\Auth\Api\ProductApi;
 
 class AuthClient
@@ -15,6 +16,11 @@ class AuthClient
      */
     public $accountApi;
 
+    /**
+     * @var OAuthApi
+     */
+    public $oAuthApi;
+    
     /**
      * @var ProductApi
      */
@@ -31,6 +37,7 @@ class AuthClient
         $this->apiClient    = new ApiClient($apiConfiguration);
         
         $this->accountApi   = new AccountApi($this->apiClient);
+        $this->oAuthApi     = new OAuthApi($this->apiClient);
         $this->productApi   = new ProductApi($this->apiClient);
     }
 
