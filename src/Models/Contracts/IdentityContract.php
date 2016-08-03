@@ -11,4 +11,5 @@ interface IdentityContract
     public function setUserId($userId);
     public function getProduct();
     public function setProduct($product);
+    public function jsonSerialize();
 }

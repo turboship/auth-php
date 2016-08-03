@@ -23,4 +23,5 @@ interface AccountContract
     public function getLocationsIdentity();
     public function getPostageIdentityUserId();
     public function getLocationsIdentityUserId();
+    public function jsonSerialize();
 }
