@@ -67,7 +67,8 @@ class Account implements AccountContract, \JsonSerializable
             $this->setAccountType(AU::get($data['accountType']));
             $this->setOrganization(AU::get($data['organization']));
             
-            foreach (AU::get($data['identities']) AS $item)
+            $identities                 = AU::get($data['identities'], []);
+            foreach ($identities AS $item)
             {
                 $this->addIdentity($item);
             }

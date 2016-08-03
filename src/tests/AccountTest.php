@@ -26,8 +26,8 @@ class AccountTest extends AccessTokenTest
     public function testGetMyAccount()
     {
         $authClient             = $this->testENVInstantiation(false);
-        $accessToken            = $authClient->apiClient->getApiConfiguration()->getAccessToken();
-        $account                = $authClient->accountApi->getMyAccount($accessToken);
+        $response               = $authClient->apiClient->refreshAccessToken();
+        $account                = $authClient->accountApi->getMyAccount($response->getAccessToken());
         $this->assertInstanceOf('TurboShip\Auth\Models\Account', $account);
     }
 
