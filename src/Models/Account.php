@@ -60,20 +60,13 @@ class Account implements AccountContract, \JsonSerializable
             $this->firstName            = AU::get($data['firstName']);
             $this->lastName             = AU::get($data['lastName']);
             $this->email                = AU::get($data['email']);
-            $this->accountType          = AU::get($data['accountType']);
             
-            if (!is_null($this->accountType))
-                $this->accountType      = new AccountType($this->accountType);
-
-            $this->organization         = AU::get($data['organization']);
-            if (!is_null($this->organization))
-                $this->organization     = new Organization($this->organization);
+            $this->setAccountType(AU::get($data['accountType']));
+            $this->setOrganization(AU::get($data['organization']));
             
-            $identities                 = AU::get($data['identities']);
-            
-            foreach ($identities AS $item)
+            foreach (AU::get($data['identities']) AS $item)
             {
-                $this->identities[] = new Identity($item);
+                $this->addIdentity($item);
             }
         }
     }
@@ -172,11 +165,14 @@ class Account implements AccountContract, \JsonSerializable
     }
 
     /**
-     * @param AccountType $accountType
+     * @param AccountType|array $accountType
      */
     public function setAccountType($accountType)
     {
-        $this->accountType = $accountType;
+        if ($accountType instanceof AccountType)
+            $this->accountType  = $accountType;
+        else
+            $this->accountType  = new AccountType($accountType);
     }
 
     /**
@@ -188,11 +184,14 @@ class Account implements AccountContract, \JsonSerializable
     }
 
     /**
-     * @param Organization $organization
+     * @param Organization|array $organization
      */
     public function setOrganization($organization)
     {
-        $this->organization = $organization;
+        if ($organization instanceof Organization)
+            $this->organization = $organization;
+        else
+            $this->organization = new Organization($organization);
     }
 
     /**
@@ -204,11 +203,14 @@ class Account implements AccountContract, \JsonSerializable
     }
 
     /**
-     * @param Identity $identity
+     * @param Identity|array $identity
      */
     public function addIdentity($identity)
     {
-        $this->identities[] = $identity;
+        if ($identity instanceof Identity)
+            $this->identities[] = $identity;
+        else
+            $this->identities[] = new Identity($identity);
     }
 
     /**
