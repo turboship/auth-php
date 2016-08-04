@@ -15,6 +15,8 @@ class OAuthApi extends BaseApi
      */
     public function store($request = [])
     {
+        $this->tryValidation($request);
+        
         $data                   = ($request instanceof CreateOAuthClientRequestContract) ? $request->jsonSerialize() : $request;
         $result                 = $this->apiClient->post('oauth', $data);
         

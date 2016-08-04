@@ -13,12 +13,14 @@ class AccountApi extends BaseApi
 {
 
     /**
-     * @param   GetAccountsRequest|array $getAccountsRequest
+     * @param   GetAccountsRequest|array $request
      * @return  GetAccountsResponse
      */
-    public function index($getAccountsRequest = [])
+    public function index($request = [])
     {
-        $data                   = ($getAccountsRequest instanceof GetAccountsRequest) ? $getAccountsRequest->jsonSerialize() : $getAccountsRequest;
+        $this->tryValidation($request);
+        
+        $data                   = ($request instanceof GetAccountsRequest) ? $request->jsonSerialize() : $request;
         $result                 = $this->apiClient->get('accounts', $data);
         
         $getAccountsResponse    = new GetAccountsResponse($result);
@@ -72,6 +74,8 @@ class AccountApi extends BaseApi
      */
     public function store($request = [])
     {
+        $this->tryValidation($request);
+        
         $data               = ($request instanceof CreateAccountRequest) ? $request->jsonSerialize() : $request;
         $response           = $this->apiClient->post('accounts', $data);
         $account            = new Account($response);
@@ -86,6 +90,8 @@ class AccountApi extends BaseApi
      */
     public function addIdentities($accountId, $createIdentityRequests)
     {
+        $this->tryValidation($createIdentityRequests);
+        
         $identities         = [];
         foreach ($createIdentityRequests AS $identityRequest)
         {

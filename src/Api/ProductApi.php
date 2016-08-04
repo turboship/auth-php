@@ -11,12 +11,14 @@ class ProductApi extends BaseApi
 {
 
     /**
-     * @param   GetProductsRequest|array  $getProductsRequest
+     * @param   GetProductsRequest|array  $request
      * @return  GetProductsResult
      */
-    public function index($getProductsRequest = [])
+    public function index($request = [])
     {
-        $data                   = ($getProductsRequest instanceof GetProductsRequest) ? $getProductsRequest->jsonSerialize() : $getProductsRequest;
+        $this->tryValidation($request);
+
+        $data                   = ($request instanceof GetProductsRequest) ? $request->jsonSerialize() : $request;
         $result                 = $this->apiClient->get('products', $data);
         
         $getProductsResult      = new GetProductsResult($result);

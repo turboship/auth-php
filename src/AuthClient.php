@@ -32,13 +32,13 @@ class AuthClient
     public $apiClient;
     
     
-    public function __construct($apiConfiguration)
+    public function __construct($apiConfiguration, $validateRequests = true)
     {
         $this->apiClient    = new ApiClient($apiConfiguration);
         
-        $this->accountApi   = new AccountApi($this->apiClient);
-        $this->oAuthApi     = new OAuthApi($this->apiClient);
-        $this->productApi   = new ProductApi($this->apiClient);
+        $this->accountApi   = new AccountApi($this->apiClient, $validateRequests);
+        $this->oAuthApi     = new OAuthApi($this->apiClient, $validateRequests);
+        $this->productApi   = new ProductApi($this->apiClient, $validateRequests);
     }
 
     /**

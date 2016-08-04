@@ -5,9 +5,10 @@ namespace TurboShip\Auth\Requests\OAuth;
 
 use TurboShip\Auth\Requests\Account\Contracts\CreateOAuthClientRequestContract;
 use jamesvweston\Utilities\ArrayUtil AS AU;
+use TurboShip\Auth\Requests\Validatable;
 use TurboShip\Auth\Utilities\Data\OAuthScopeDataUtil;
 
-class CreateOAuthClientRequest implements CreateOAuthClientRequestContract
+class CreateOAuthClientRequest implements CreateOAuthClientRequestContract, Validatable
 {
 
     /**

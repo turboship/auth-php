@@ -5,8 +5,9 @@ namespace TurboShip\Auth\Requests\Account;
 
 use jamesvweston\Utilities\ArrayUtil AS AU;
 use TurboShip\Auth\Requests\Account\Contracts\GetAccountsRequestContract;
+use TurboShip\Auth\Requests\Validatable;
 
-class GetAccountsRequest implements GetAccountsRequestContract
+class GetAccountsRequest implements GetAccountsRequestContract, Validatable
 {
 
     /**
