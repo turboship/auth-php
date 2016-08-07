@@ -37,6 +37,5 @@ class BaseApi
         {
             $request->validate();
         }
-        
     }
 }

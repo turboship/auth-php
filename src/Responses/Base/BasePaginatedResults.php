@@ -1,10 +1,11 @@
 <?php
 
-namespace TurboShip\Auth\Responses;
+namespace TurboShip\Auth\Responses\Base;
 
 use jamesvweston\Utilities\ArrayUtil AS AU;
+use TurboShip\Auth\Responses\Contracts\PaginatedResults AS PaginatedResultsContract;
 
-abstract class PaginatedResults implements PaginatedResultsContract
+abstract class BasePaginatedResults implements PaginatedResultsContract
 {
 
     /**

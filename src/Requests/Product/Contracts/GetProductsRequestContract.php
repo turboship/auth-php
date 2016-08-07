@@ -3,7 +3,7 @@
 namespace TurboShip\Auth\Requests\Product\Contracts;
 
 
-interface GetProductsRequestContract
+interface GetProductsRequest extends \JsonSerializable
 {
     public function getIds();
     public function setIds($ids);

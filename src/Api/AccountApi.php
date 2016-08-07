@@ -21,6 +21,7 @@ class AccountApi extends BaseApi
         $this->tryValidation($request);
         
         $data                   = ($request instanceof GetAccountsRequest) ? $request->jsonSerialize() : $request;
+        
         $result                 = $this->apiClient->get('accounts', $data);
         
         $getAccountsResponse    = new GetAccountsResponse($result);
@@ -52,23 +53,6 @@ class AccountApi extends BaseApi
     }
 
     /**
-     * @param   string      $email
-     * @return  Account|null
-     */
-    public function getOneByEmail($email)
-    {
-        $getAccountsRequest = new GetAccountsRequest();
-        $getAccountsRequest->setEmails($email);
-        
-        $result             = $this->index($getAccountsRequest);
-        
-        if ($result->getTotal() == 1)
-            return $result->getData()[0];
-        else
-            return null;
-    }
-
-    /**
      * @param CreateAccountRequest|array $request
      * @return  Account
      */
@@ -83,6 +67,23 @@ class AccountApi extends BaseApi
         return $account;
     }
 
+    /**
+     * @param   string      $email
+     * @return  Account|null
+     */
+    public function getOneByEmail($email)
+    {
+        $request = new GetAccountsRequest();
+        $request->setEmails($email);
+
+        $result             = $this->index($request);
+
+        if ($result->getTotal() == 1)
+            return $result->getData()[0];
+        else
+            return null;
+    }
+    
     /**
      * @param   int                         $accountId
      * @param   CreateIdentityRequest[]     $createIdentityRequests

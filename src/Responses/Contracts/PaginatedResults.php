@@ -1,10 +1,10 @@
 <?php
 
 
-namespace TurboShip\Auth\Responses;
+namespace TurboShip\Auth\Responses\Contracts;
 
 
-interface PaginatedResultsContract
+interface PaginatedResults extends \JsonSerializable
 {
     function getData();
     function setData($data);
@@ -24,5 +24,4 @@ interface PaginatedResultsContract
     function setFrom($from);
     function getTo();
     function setTo($to);
-    function jsonSerialize();
 }

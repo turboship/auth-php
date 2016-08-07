@@ -3,34 +3,20 @@
 namespace TurboShip\Auth\Models;
 
 
-use TurboShip\Auth\Models\Contracts\ProductContract;
 use jamesvweston\Utilities\ArrayUtil AS AU;
+use TurboShip\Auth\Models\Base\BaseProduct;
 
-class Product implements ProductContract
+class Product extends BaseProduct
 {
-
-    /**
-     * @var int
-     */
-    protected $id;
-
-    /**
-     * @var string
-     */
-    protected $name;
-
-
+    
     /**
      * Product constructor.
-     * @param array|null $data
+     * @param   array   $data
      */
-    public function __construct($data = null)
+    public function __construct($data = [])
     {
-        if (is_array($data))
-        {
-            $this->id                   = AU::get($data['id']);
-            $this->name                 = AU::get($data['name']);
-        }
+        $this->id                       = AU::get($data['id']);
+        $this->name                     = AU::get($data['name']);
     }
     
     /**
@@ -38,42 +24,10 @@ class Product implements ProductContract
      */
     public function jsonSerialize()
     {
-        return [
-            'id'        => $this->id,
-            'name'      => $this->name,
-        ];
-    }
+        $object['id']                   = $this->id;
+        $object['name']                 = $this->name;
 
-    /**
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param int $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * @param string $name
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
+        return $object;
     }
     
 }

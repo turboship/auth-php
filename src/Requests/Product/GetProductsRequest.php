@@ -3,23 +3,12 @@
 namespace TurboShip\Auth\Requests\Product;
 
 
-use TurboShip\Auth\Requests\Product\Contracts\GetProductsRequestContract;
+use TurboShip\Auth\Requests\Product\Base\BaseGetProductsRequest;
 use jamesvweston\Utilities\ArrayUtil AS AU;
 use TurboShip\Auth\Requests\Validatable;
 
-class GetProductsRequest implements GetProductsRequestContract, Validatable
+class GetProductsRequest extends BaseGetProductsRequest implements Validatable
 {
-
-    /**
-     * @var string|null
-     */
-    protected $ids;
-
-    /**
-     * @var string|null
-     */
-    protected $names;
-
 
     /**
      * GetProductsRequest constructor.
@@ -48,38 +37,6 @@ class GetProductsRequest implements GetProductsRequestContract, Validatable
     public function validate()
     {
         
-    }
-
-    /**
-     * @return null|string
-     */
-    public function getIds()
-    {
-        return $this->ids;
-    }
-
-    /**
-     * @param null|string $ids
-     */
-    public function setIds($ids)
-    {
-        $this->ids = $ids;
-    }
-
-    /**
-     * @return null|string
-     */
-    public function getNames()
-    {
-        return $this->names;
-    }
-
-    /**
-     * @param null|string $names
-     */
-    public function setNames($names)
-    {
-        $this->names = $names;
     }
     
 }

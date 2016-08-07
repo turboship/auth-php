@@ -2,33 +2,20 @@
 
 namespace TurboShip\Auth\Models;
 
-use jamesvweston\Utilities\ArrayUtil AS AU;
-use TurboShip\Auth\Models\Contracts\OAuthClientScopeContract;
 
-class OAuthClientScope implements OAuthClientScopeContract, \JsonSerializable
+use jamesvweston\Utilities\ArrayUtil AS AU;
+use TurboShip\Auth\Models\Base\BaseOAuthClientScope;
+
+class OAuthClientScope extends BaseOAuthClientScope
 {
 
     /**
-     * @var int
+     * @param   array   $data
      */
-    protected $id;
-
-    /**
-     * @var OAuthScope
-     */
-    protected $oAuthScope;
-
-
-    /**
-     * @param   array|null $data
-     */
-    public function __construct($data = null)
+    public function __construct($data = [])
     {
-        if (is_array($data))
-        {
-            $this->id                   = AU::get($data['id']);
-            $this->setOAuthScope(AU::get($data['oAuthScope']));
-        }
+        $this->id                       = AU::get($data['id']);
+        $this->oAuthScope               = new OAuthScope(AU::get($data['oAuthScope']));
     }
 
     /**
@@ -40,43 +27,6 @@ class OAuthClientScope implements OAuthClientScopeContract, \JsonSerializable
         $object['oAuthScope']           = $this->oAuthScope->jsonSerialize();
         
         return $object;
-    }
-    
-    /**
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param int $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * @return OAuthScope
-     */
-    public function getOAuthScope()
-    {
-        return $this->oAuthScope;
-    }
-
-    /**
-     * @param OAuthScope|array $oAuthScope
-     */
-    public function setOAuthScope($oAuthScope)
-    {
-        if (is_null($oAuthScope))
-            return;
-        else if ($oAuthScope instanceof OAuthScope)
-            $this->oAuthScope = $oAuthScope;
-        else
-            $this->oAuthScope = new OAuthScope($oAuthScope);
     }
     
 }

@@ -4,10 +4,9 @@ namespace TurboShip\Auth\Responses\Account;
 
 
 use TurboShip\Auth\Models\Account;
-use TurboShip\Auth\Responses\PaginatedResults;
-use TurboShip\Auth\Responses\PaginatedResultsContract;
+use TurboShip\Auth\Responses\Base\BasePaginatedResults;
 
-class GetAccountsResponse extends PaginatedResults implements PaginatedResultsContract
+class GetAccountsResponse extends BasePaginatedResults
 {
 
     public function __construct($data = null)

@@ -4,32 +4,18 @@ namespace TurboShip\Auth\Models;
 
 
 use jamesvweston\Utilities\ArrayUtil AS AU;
-use TurboShip\Auth\Models\Contracts\OAuthScopeContract;
+use TurboShip\Auth\Models\Base\BaseOAuthScope;
 
-class OAuthScope implements OAuthScopeContract, \JsonSerializable
+class OAuthScope extends BaseOAuthScope
 {
 
     /**
-     * @var string
+     * @param   array   $data
      */
-    protected $id;
-
-    /**
-     * @var string
-     */
-    protected $description;
-
-
-    /**
-     * @param   array|null $data
-     */
-    public function __construct($data = null)
+    public function __construct($data = [])
     {
-        if (is_array($data))
-        {
-            $this->id                   = AU::get($data['id']);
-            $this->description          = AU::get($data['description']);
-        }
+        $this->id                       = AU::get($data['id']);
+        $this->description              = AU::get($data['description']);
     }
 
     /**
@@ -37,42 +23,10 @@ class OAuthScope implements OAuthScopeContract, \JsonSerializable
      */
     public function jsonSerialize()
     {
-        return [
-            'id'            => $this->id,
-            'description'   => $this->description,
-        ];
-    }
-    
-    /**
-     * @return string
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
+        $object['id']                   = $this->id;
+        $object['description']          = $this->description;
 
-    /**
-     * @param string $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * @return string
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
-     * @param string $description
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
+        return $object;
     }
     
 }

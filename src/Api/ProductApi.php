@@ -17,7 +17,7 @@ class ProductApi extends BaseApi
     public function index($request = [])
     {
         $this->tryValidation($request);
-
+        
         $data                   = ($request instanceof GetProductsRequest) ? $request->jsonSerialize() : $request;
         $result                 = $this->apiClient->get('products', $data);
         

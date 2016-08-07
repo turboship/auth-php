@@ -3,38 +3,44 @@
 namespace TurboShip\Auth\tests;
 
 
+use TurboShip\Auth\AuthClient;
 use TurboShip\Auth\Requests\Account\CreateAccountRequest;
 use TurboShip\Auth\Utilities\Generators\AccountGenerator;
 
-class AccountTest extends AccessTokenTest
+class AccountTest extends \PHPUnit_Framework_TestCase
 {
 
-    public function testShowAccount()
+    public function testShow()
     {
-        $authClient             = $this->testENVInstantiation(false);
+        $authClient             = new AuthClient('./');
         $account                = $authClient->accountApi->show(1);
         $this->assertInstanceOf('TurboShip\Auth\Models\Account', $account);
     }
     
     public function testIndex()
     {
-        $authClient             = $this->testENVInstantiation(false);
+        $authClient             = new AuthClient('./');
         $getAccountsResponse    = $authClient->accountApi->index();
         $this->assertInstanceOf('TurboShip\Auth\Responses\Account\GetAccountsResponse', $getAccountsResponse);
+        
+        foreach ($getAccountsResponse->getData() AS $item)
+        {
+            $this->assertInstanceOf('TurboShip\Auth\Models\Account', $item);
+        }
     }
     
     public function testGetMyAccount()
     {
-        $authClient             = $this->testENVInstantiation(false);
+        $authClient             = new AuthClient('./');
         $response               = $authClient->apiClient->refreshAccessToken();
         $account                = $authClient->accountApi->getMyAccount($response->getAccessToken());
         $this->assertInstanceOf('TurboShip\Auth\Models\Account', $account);
     }
 
-    public function testCreateAccount()
+    public function testStore()
     {
         /**
-        $authClient             = $this->testENVInstantiation(false);
+        $authClient             = new AuthClient('./');
         $data                   = AccountGenerator::getUserSuccessAccountA();
         $request                = new CreateAccountRequest($data);
         $account                = $authClient->accountApi->store($request);
@@ -44,9 +50,8 @@ class AccountTest extends AccessTokenTest
     
     public function testGetOneByEmail()
     {
-        $authClient             = $this->testENVInstantiation(false);
+        $authClient             = new AuthClient('./');
         $email                  = $authClient->apiClient->getApiConfiguration()->getUsername();
-        
         $result                 = $authClient->accountApi->getOneByEmail($email);
         $this->assertInstanceOf('TurboShip\Auth\Models\Account', $result);
     }

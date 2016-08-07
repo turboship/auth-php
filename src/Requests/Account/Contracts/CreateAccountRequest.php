@@ -3,7 +3,7 @@
 namespace TurboShip\Auth\Requests\Account\Contracts;
 
 
-interface CreateAccountRequestContract
+interface CreateAccountRequest extends \JsonSerializable
 {
     function getFirstName();
     function setFirstName($firstName);
@@ -19,6 +19,4 @@ interface CreateAccountRequestContract
     function setOrganizationId($organizationId);
     function getIdentities();
     function addIdentity($identity);
-    function jsonSerialize();
-    function validate();
 }

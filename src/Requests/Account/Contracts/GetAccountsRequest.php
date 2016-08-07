@@ -3,7 +3,7 @@
 namespace TurboShip\Auth\Requests\Account\Contracts;
 
 
-interface GetAccountsRequestContract
+interface GetAccountsRequest extends \JsonSerializable
 {
     public function getIds();
     public function setIds($ids);
@@ -19,6 +19,4 @@ interface GetAccountsRequestContract
     public function setLimit($limit);
     public function getPage();
     public function setPage($page);
-    public function jsonSerialize();
-    public function validate();
 }

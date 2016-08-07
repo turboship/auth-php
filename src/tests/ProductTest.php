@@ -11,7 +11,7 @@ namespace TurboShip\Auth\tests;
 
 use TurboShip\Auth\AuthClient;
 
-class ProductTest extends AccessTokenTest
+class ProductTest extends \PHPUnit_Framework_TestCase
 {
     
     public function testGetProduct()

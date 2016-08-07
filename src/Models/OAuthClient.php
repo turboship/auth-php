@@ -3,46 +3,26 @@
 namespace TurboShip\Auth\Models;
 
 
-use TurboShip\Auth\Models\Contracts\OAuthClientContract;
+use TurboShip\Auth\Models\Base\BaseOAuthClient;
 use jamesvweston\Utilities\ArrayUtil AS AU;
 
-class OAuthClient implements OAuthClientContract, \JsonSerializable
+class OAuthClient extends BaseOAuthClient
 {
 
     /**
-     * @var string
+     * @param   array   $data
      */
-    protected $id;
-
-    /**
-     * @var string
-     */
-    protected $name;
-
-    /**
-     * @var string
-     */
-    protected $secret;
-
-    /**
-     * @var OAuthClientScope[]
-     */
-    protected $oAuthClientScopes;
-
-
-    /**
-     * @param   array|null $data
-     */
-    public function __construct($data = null)
+    public function __construct($data = [])
     {
-        $this->oAuthClientScopes        = [];
+        $this->id                       = AU::get($data['id']);
+        $this->name                     = AU::get($data['name']);
+        $this->secret                   = AU::get($data['secret']);
 
-        if (is_array($data))
+        $this->oAuthClientScopes        = [];
+        $oAuthClientScopes              = AU::get($data['oAuthClientScopes'], []);
+        foreach ($oAuthClientScopes AS $item)
         {
-            $this->id                   = AU::get($data['id']);
-            $this->name                 = AU::get($data['name']);
-            $this->secret               = AU::get($data['secret']);
-            
+            $this->addOAuthClientScope(new OAuthClientScope($item));
         }
     }
 
@@ -62,87 +42,6 @@ class OAuthClient implements OAuthClientContract, \JsonSerializable
         }
 
         return $object;
-    }
-
-    /**
-     * @return string
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param string $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * @param string $name
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSecret()
-    {
-        return $this->secret;
-    }
-
-    /**
-     * @param string $secret
-     */
-    public function setSecret($secret)
-    {
-        $this->secret = $secret;
-    }
-
-    /**
-     * @return OAuthClientScope[]
-     */
-    public function getOAuthClientScopes()
-    {
-        return $this->oAuthClientScopes;
-    }
-
-    /**
-     * @param   OAuthClientScope|array  $oAuthClientScope
-     */
-    public function addOAuthClientScope($oAuthClientScope)
-    {
-        if ($oAuthClientScope instanceof OAuthClientScope)
-            $this->oAuthClientScopes[]  = $oAuthClientScope;
-        else
-            $this->oAuthClientScopes[]  = new OAuthClientScope($oAuthClientScope);
-    }
-
-    /**
-     * @param  array    $oAuthClientScopes
-     */
-    public function setOAuthClientScopes($oAuthClientScopes)
-    {
-        $this->oAuthClientScopes    = [];
-
-        foreach ($oAuthClientScopes AS $item)
-        {
-            $this->addOAuthClientScope($item);
-        }
-
     }
     
 }

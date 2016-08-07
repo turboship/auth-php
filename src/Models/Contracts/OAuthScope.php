@@ -3,9 +3,8 @@
 namespace TurboShip\Auth\Models\Contracts;
 
 
-interface OAuthScopeContract
+interface OAuthScope extends \JsonSerializable
 {
-    function jsonSerialize();
     function getId();
     function setId($id);
     function getDescription();

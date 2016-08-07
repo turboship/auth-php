@@ -3,23 +3,12 @@
 namespace TurboShip\Auth\Requests\Account;
 
 
-use TurboShip\Auth\Requests\Account\Contracts\CreateIdentityRequestContract;
 use jamesvweston\Utilities\ArrayUtil AS AU;
+use TurboShip\Auth\Requests\Account\Base\BaseCreateIdentityRequest;
 use TurboShip\Auth\Requests\Validatable;
 
-class CreateIdentityRequest implements CreateIdentityRequestContract, Validatable
+class CreateIdentityRequest extends BaseCreateIdentityRequest implements Validatable
 {
-
-    /**
-     * @var int
-     */
-    protected $userId;
-
-    /**
-     * @var int
-     */
-    protected $productId;
-
 
     /**
      * CreateIdentityRequest constructor.
@@ -48,38 +37,6 @@ class CreateIdentityRequest implements CreateIdentityRequestContract, Validatabl
     public function validate()
     {
 
-    }
-
-    /**
-     * @return int
-     */
-    public function getUserId()
-    {
-        return $this->userId;
-    }
-
-    /**
-     * @param int $userId
-     */
-    public function setUserId($userId)
-    {
-        $this->userId = $userId;
-    }
-
-    /**
-     * @return int
-     */
-    public function getProductId()
-    {
-        return $this->productId;
-    }
-
-    /**
-     * @param int $productId
-     */
-    public function setProductId($productId)
-    {
-        $this->productId = $productId;
     }
     
 }

@@ -3,34 +3,20 @@
 namespace TurboShip\Auth\Models;
 
 
-use TurboShip\Auth\Models\Contracts\OrganizationContract;
+use TurboShip\Auth\Models\Base\BaseOrganization;
 use jamesvweston\Utilities\ArrayUtil AS AU;
 
-class Organization implements OrganizationContract
+class Organization extends BaseOrganization
 {
-
-    /**
-     * @var int
-     */
-    protected $id;
-
-    /**
-     * @var string
-     */
-    protected $name;
-
-
+    
     /**
      * Organization constructor.
-     * @param array|null $data
+     * @param   array   $data
      */
-    public function __construct($data = null)
+    public function __construct($data = [])
     {
-        if (is_array($data))
-        {
-            $this->id                   = AU::get($data['id']);
-            $this->name                 = AU::get($data['name']);
-        }
+        $this->id                       = AU::get($data['id']);
+        $this->name                     = AU::get($data['name']);
     }
     
     /**
@@ -38,42 +24,10 @@ class Organization implements OrganizationContract
      */
     public function jsonSerialize()
     {
-        return [
-            'id'        => $this->id,
-            'name'      => $this->name,
-        ];
-    }
+        $object['id']                   = $this->id;
+        $object['name']                 = $this->name;
 
-    /**
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param int $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * @param string $name
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
+        return $object;
     }
     
 }
