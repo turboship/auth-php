@@ -3,19 +3,19 @@
 namespace TurboShip\Auth\Support\Traits;
 
 
-use TurboShip\Auth\Models\Contracts\AccountContract;
+use TurboShip\Auth\Models\Contracts\Account AS TurboShipAccountContract;
 
 trait TurboShipUserTrait
 {
 
     /**
-     * @var AccountContract
+     * @var TurboShipAccountContract
      */
     protected $turboShipAccount;
 
 
     /**
-     * @return AccountContract
+     * @return TurboShipAccountContract
      */
     public function getTurboShipAccount()
     {
@@ -23,13 +23,13 @@ trait TurboShipUserTrait
     }
 
     /**
-     * @param   AccountContract     $account
+     * @param   TurboShipAccountContract     $account
      * @throws  \Exception
      */
     public function setTurboShipAccount($account)
     {
-        if (! $account instanceof AccountContract)
-            throw new \Exception('account must implement AccountContract');
+        if (! $account instanceof TurboShipAccountContract)
+            throw new \Exception('account must TurboShip\Auth\Models\Contracts\Account');
 
         $this->turboShipAccount     = $account;
     }
