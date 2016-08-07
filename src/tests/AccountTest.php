@@ -33,7 +33,7 @@ class AccountTest extends \PHPUnit_Framework_TestCase
     {
         $authClient             = new AuthClient('./');
         $response               = $authClient->apiClient->refreshAccessToken();
-        $account                = $authClient->accountApi->getMyAccount($response->getAccessToken());
+        $account                = $authClient->getMyAccount($response->getAccessToken());
         $this->assertInstanceOf('TurboShip\Auth\Models\Account', $account);
     }
 

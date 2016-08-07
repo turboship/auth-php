@@ -7,6 +7,7 @@ use TurboShip\Api\ApiClient;
 use TurboShip\Auth\Api\AccountApi;
 use TurboShip\Auth\Api\OAuthApi;
 use TurboShip\Auth\Api\ProductApi;
+use TurboShip\Auth\Models\Account;
 
 class AuthClient
 {
@@ -43,11 +44,11 @@ class AuthClient
 
     /**
      * @param   string      $access_token
-     * @return  \TurboShip\Auth\Models\Account
+     * @return  Account
      */
     public function getMyAccount($access_token)
     {
         $account                = $this->apiClient->getAccountForAccessToken($access_token);
-        return $account;
+        return new Account($account);
     }
 }
