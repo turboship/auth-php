@@ -18,6 +18,8 @@ class CreateOAuthClientRequest extends BaseCreateOAuthClientRequest implements V
     {
         if (is_array($data))
         {
+            $this->id                   = AU::get($data['id']);
+            $this->secret               = AU::get($data['secret']);
             $this->accountId            = AU::get($data['accountId']);
             $this->oAuthScopeIds        = AU::get($data['oAuthScopeIds']);
         }
@@ -28,6 +30,8 @@ class CreateOAuthClientRequest extends BaseCreateOAuthClientRequest implements V
      */
     function jsonSerialize()
     {
+        $object['id']                   = $this->id;
+        $object['secret']               = $this->secret;
         $object['accountId']            = $this->accountId;
         $object['oAuthScopeIds']        = $this->oAuthScopeIds;
         

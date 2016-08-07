@@ -9,6 +9,16 @@ abstract class BaseCreateOAuthClientRequest implements CreateOAuthClientRequestC
 {
     
     /**
+     * @var string
+     */
+    protected $id;
+
+    /**
+     * @var string
+     */
+    protected $secret;
+    
+    /**
      * @var int
      */
     protected $accountId;
@@ -19,7 +29,38 @@ abstract class BaseCreateOAuthClientRequest implements CreateOAuthClientRequestC
      */
     protected $oAuthScopeIds;
 
+    /**
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
+    /**
+     * @param string $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSecret()
+    {
+        return $this->secret;
+    }
+
+    /**
+     * @param string $secret
+     */
+    public function setSecret($secret)
+    {
+        $this->secret = $secret;
+    }
+    
     /**
      * @return int
      */
